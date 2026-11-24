@@ -1107,7 +1107,7 @@ class Probe(private val ctx: Context) {
         }
         opt("Foldable hinge") { if (sdk(30)) sm?.getDefaultSensor(Sensor.TYPE_HINGE_ANGLE) != null else null }
         add("Input devices") {
-            InputDevice.getDeviceIds().mapNotNull { InputDevice.getDevice(it) }
+            InputDevice.getDeviceIds().toList().mapNotNull { InputDevice.getDevice(it) }
                 .filter { !it.isVirtual }
                 .joinToString(", ") { d ->
                     val kind = when {
